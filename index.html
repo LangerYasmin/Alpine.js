@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js" defer></script>
+    <script src="https://kit.fontawesome.com/883034b0f6.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="pageHead">
+        <div class="pageHeading">
+            <h1>Home</h1>
+        </div>
+        <div class="dropdown" x-data="{ open: false }">
+            <button class="dropdownBtn" @click="open = true">
+                <i class="fas fa-user-circle"><i class="fas fa-chevron-down small"></i></i>
+            </button>
+            <div class="dropdownContent" x-show.transition.opacity.duration.500ms="open" @click.away="open = false">
+                <ul class="dropdownList">
+                    <li><a href="#"><i class="fas fa-user"></i>Account</a></li>
+                    <li><a href="#"><i class="fas fa-cog"></i>Settings</a></li>
+                    <li class="logout"><a href="#"><i class="fas fa-sign-out-alt"></i>Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="sidebar" x-data="{ showDiv: true, open: false }">
+        <div class="sidebarButtonToggle" x-show="showDiv">
+            <button class="openSidebar" @click="{ showDiv = false, open = true }"><i class="fas fa-bars"></i></button>
+        </div>
+        <div class="sidebarContent" x-show="open" @click.away="{ showDiv = true, open = false }">
+            <button class="closeSidebar" @click="{ showDiv = true, open = false }">X</button>
+            <ul class="sidebarList">
+                <li><a href="#"><i class="fas fa-user"></i>Account</a></li>
+                <li><a href="#"><i class="fas fa-cog"></i>Settings</a></li>
+                <li><a href="#"><i class="fas fa-sign-out-alt"></i>Logout</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="tabsContainer" x-data="{ tab: 'tab1' }">
+        <div class="tab">
+            <button class="tablink" :class="{ 'active': tab === 'tab1' }" @click="tab = 'tab1'">Tab 1</button>
+            <button class="tablink" :class="{ 'active': tab === 'tab2' }" @click="tab = 'tab2'">Tab 2</button>
+            <button class="tablink" :class="{ 'active': tab === 'tab3' }" @click="tab = 'tab3'">Tab 3</button>
+        </div>
+        <div x-show.transition.in.opacity.scale.duration.800ms="tab === 'tab1'" class="tabContent" id="tab1">
+            <h2>Tab 1</h2>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Impedit non placeat eum est nostrum consequatur voluptas 
+                nisi quis facilis necessitatibus! Facere dolores ipsam explicabo debitis autem voluptate exercitationem culpa iste.
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Corrupti, necessitatibus rerum, fuga, aperiam earum iure facilis 
+                esse nobis minus nihil totam atque cum unde magnam maxime. Optio vero natus culpa.</p>
+        </div>
+        <div x-show.transition.in.opacity.scale.duration.800ms="tab === 'tab2'" class="tabContent" id="tab2">
+            <h2>Tab 2</h2>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Impedit non placeat eum est nostrum consequatur voluptas 
+                nisi quis facilis necessitatibus! Facere dolores ipsam explicabo debitis autem voluptate exercitationem culpa iste.
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Pariatur, eligendi blanditiis natus minus, velit repellat iusto 
+                assumenda sequi, praesentium molestias beatae placeat eos deserunt animi eaque ab debitis corporis enim.</p>
+        </div>
+        <div x-show.transition.in.opacity.scale.duration.800ms="tab === 'tab3'" class="tabContent" id="tab3">
+            <h2>Tab 3</h2>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Impedit non placeat eum est nostrum consequatur voluptas 
+                nisi quis facilis necessitatibus! Facere dolores ipsam explicabo debitis autem voluptate exercitationem culpa iste.
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga vero eaque dicta! Ipsam, magnam non commodi cumque labore 
+                deserunt sapiente quaerat illo odit quas eum expedita magni assumenda atque blanditiis?</p>
+        </div>
+    </div>
+    <div class="accordion">
+        <div class="accordionWrapper" x-data="{ open: false }">
+            <div class="accordionTab" @click="open = !open">
+                <p>First Container</p>
+            </div>
+            <div class="accordionContent" x-show.transition.in.opacity.0.duration.800ms="open">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum unde facilis reiciendis quia ad ipsa nisi sequi! 
+                    Iusto consequuntur, odio possimus aliquam minus totam nostrum amet, unde voluptatibus assumenda consectetur.</p>
+            </div>
+        </div>
+        <div class="accordionWarpper" x-data="{ open: false }">
+            <div class="accordionTab" @click="open = !open">
+                <p>Second Container</p>
+            </div>
+            <div class="accordionContent" x-show.transition.in.opacity.0.duration.800ms="open">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut, autem iste assumenda reiciendis sint veniam, doloremque 
+                    enim quas sunt totam, amet nulla! Veritatis ipsum placeat autem, magnam tenetur minus rem.</p>
+            </div>
+        </div>
+        <div class="accordionWrapper" x-data="{ open: false }">
+            <div class="accordionTab" @click="open = !open">
+                <p>Third Container</p>
+            </div>
+            <div class="accordionContent" x-show.transition.in.opacity.0.duration.800ms="open">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio dignissimos non nihil aperiam nisi omnis dicta autem, 
+                    nesciunt sit iusto culpa eos inventore veritatis at? Fugiat id voluptatibus dolorum tenetur!</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
